@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes,} from 'react-router-dom';
 import './App.css';
-
+import NavBar from './componentes/NavBar';
+import PrincipalPage from './page/PrincipalPage';
+import Tops from './page/Tops';
+import Conjuntos from './page/Conjuntos';
+import Franelas from './page/Franelas';
+import ShortYVestidos from './page/ShortYVestidos/ShortYVestidos';
+import {DataPoducto} from './context/ContextProvider.js'
+import Carrito from './componentes/Carrito';
+import DetalleProducto from './page/DetalleProducto/DetalleProducto';
+import PiePagina from './componentes/PiePagina/PiePagina';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataPoducto>
+    <BrowserRouter>
+    <NavBar></NavBar>
+    <Carrito/>
+    <Routes>
+    <Route path="/" exact element={<PrincipalPage/>}></Route>
+    <Route path='/tops' element={<Tops/>}></Route>
+    <Route path='/conjuntos' element={<Conjuntos/>}></Route>
+    <Route path='/franelas' element={<Franelas/>}></Route>
+    <Route path='/shortYvestidos' element={<ShortYVestidos/>}></Route>
+    <Route path='/detalle/:id' element={<DetalleProducto/>}></Route>
+    </Routes>
+    </BrowserRouter>
+    <PiePagina/>
+    </DataPoducto>
   );
 }
 
